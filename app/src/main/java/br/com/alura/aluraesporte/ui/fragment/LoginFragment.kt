@@ -5,8 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavGraphNavigator
+import androidx.navigation.fragment.findNavController
 import br.com.alura.aluraesporte.R
+import kotlinx.android.synthetic.main.login.*
 
 /**
  * Created by felipebertanha on 08/June/2020
@@ -15,7 +16,7 @@ import br.com.alura.aluraesporte.R
 class LoginFragment : Fragment() {
 
     private val navigator by lazy {
-
+        findNavController()
     }
 
     override fun onCreateView(
@@ -24,5 +25,13 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.login, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        login_botao_logar.setOnClickListener {
+            navigator.navigate(LoginFragmentDirections.actionLoginToListaProdutos())
+        }
     }
 }
