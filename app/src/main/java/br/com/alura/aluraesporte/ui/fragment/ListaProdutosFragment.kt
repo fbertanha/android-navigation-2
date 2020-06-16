@@ -18,7 +18,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class ListaProdutosFragment : Fragment() {
 
     private val viewModel: ProdutosViewModel by viewModel()
-    private val loginViewModel : LoginViewModel by viewModel()
+    private val loginViewModel: LoginViewModel by viewModel()
     private val adapter: ProdutosAdapter by inject()
     private val controlador by lazy {
         findNavController()
@@ -26,6 +26,11 @@ class ListaProdutosFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if (loginViewModel.naoEstaLogado()) {
+            vaiParaLogin()
+            return
+        }
         setHasOptionsMenu(true)
         buscaProdutos()
     }
@@ -36,10 +41,14 @@ class ListaProdutosFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (item?.itemId == R.id.menu_lista_produtos_deslogar) {
-            loginViewModel.desloga()
-            controlador.navigate(ListaProdutosFragmentDirections.acaoListaProdutosParaLogin())
+            vaiParaLogin()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun vaiParaLogin() {
+        loginViewModel.desloga()
+        controlador.navigate(ListaProdutosFragmentDirections.acaoListaProdutosParaLogin())
     }
 
     private fun buscaProdutos() {
