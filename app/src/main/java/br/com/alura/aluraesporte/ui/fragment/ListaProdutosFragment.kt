@@ -48,7 +48,7 @@ class ListaProdutosFragment : Fragment() {
 
     private fun vaiParaLogin() {
         loginViewModel.desloga()
-        controlador.navigate(ListaProdutosFragmentDirections.acaoListaProdutosParaLogin())
+        controlador.navigate(LoginFragmentDirections.acaoGlobalLogin())
     }
 
     private fun buscaProdutos() {
