@@ -37,6 +37,14 @@ class LoginFragment : Fragment() {
             viewModel.loga()
             vaiParaListaProdutos()
         }
+
+        login_botao_cadastrar.setOnClickListener {
+            vaiParaCadastro()
+        }
+    }
+
+    private fun vaiParaCadastro() {
+        navigator.navigate(LoginFragmentDirections.acaoLoginParaCadastroUsuario())
     }
 
     private fun vaiParaListaProdutos() {
