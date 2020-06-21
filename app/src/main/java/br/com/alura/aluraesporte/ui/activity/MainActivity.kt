@@ -5,12 +5,15 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import br.com.alura.aluraesporte.R
+import br.com.alura.aluraesporte.ui.viewmodel.EstadoAppViewModel
 
 class MainActivity : AppCompatActivity() {
 
     private val controlador by lazy {
         findNavController(R.id.main_activity_nav_host)
     }
+
+    private val viewModel : EstadoAppViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
