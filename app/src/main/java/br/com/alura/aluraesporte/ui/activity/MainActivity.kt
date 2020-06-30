@@ -1,6 +1,7 @@
 package br.com.alura.aluraesporte.ui.activity
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
@@ -27,12 +28,18 @@ class MainActivity : AppCompatActivity() {
                                                       arguments ->
             title = destination.label
 
-            viewModel.appBar.observe(this, Observer {
-                it.let { temAppBar ->
-                    if (temAppBar) {
+            viewModel.components.observe(this, Observer {
+                it.let { temComponentes ->
+                    if (temComponentes.appBar) {
                         supportActionBar?.show()
                     } else {
                         supportActionBar?.hide()
+                    }
+
+                    if (temComponentes.bottomNavigation) {
+                        main_activity_bottom_navigation.visibility = View.VISIBLE
+                    } else{
+                        main_activity_bottom_navigation.visibility = View.GONE
                     }
 
 
